@@ -1,0 +1,19 @@
+# Dependencies and local environment files
+node_modules/
+.env
+.env.*
+!.env.example
+
+# Operating-system and editor junk
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+*.swp
+
+# Logs and coverage output
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+coverage/
+
