@@ -1,0 +1,55 @@
+  <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LUMEN Launch Advisor</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="advisor" aria-labelledby="page-title">
+      <header>
+        <p class="eyebrow">LUMEN · Germany launch advisor</p>
+        <h1 id="page-title">Channel and price scenario</h1>
+        <p class="intro">Compare first-year commercial scenarios using the approved derived data.</p>
+      </header>
+
+      <section class="controls" aria-label="Scenario controls">
+        <label>
+          Channel
+          <select id="channel-select" name="channel">
+            <option value="DTC Online">DTC Online</option>
+            <option value="Retail/Grocery">Retail/Grocery</option>
+            <option value="Gym &amp; Office">Gym &amp; Office</option>
+          </select>
+        </label>
+        <label>
+          Price
+          <select id="price-select" name="price">
+            <option value="1.79">€1.79</option>
+            <option value="2.19" selected>€2.19</option>
+            <option value="2.59">€2.59</option>
+          </select>
+        </label>
+      </section>
+
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+
+      <section class="results" aria-label="Scenario results">
+        <article>
+          <p>Estimated year-one units</p>
+          <strong id="units">n/a</strong>
+        </article>
+        <article>
+          <p>Retail revenue</p>
+          <strong id="revenue">n/a</strong>
+        </article>
+        <article>
+          <p>Contribution</p>
+          <strong id="contribution">n/a</strong>
+        </article>
+      </section>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>
