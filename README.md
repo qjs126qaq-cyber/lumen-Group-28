@@ -47,3 +47,25 @@ These questions aren't here to slow you down — they're part of what's being ev
 ## Our Approach
 
 *[To be filled in by the team at the end.]*
+
+
+## LUMEN Germany Launch Advisor
+
+This repository is being developed into a privacy-safe, static dashboard that
+helps choose LUMEN's German launch price, channel, and timing. It does not use
+an API, database, login, or secret. It is designed for zero-configuration
+Vercel deployment from the `public/` directory.
+
+### Regenerate the dashboard data
+
+Raw case data remains read-only in `data/`. The browser must never load those
+files. To regenerate the aggregate-only data file after a permitted source-data
+change, run from the repository root:
+
+```bash
+node scripts/prepare-data.js
+```
+
+This writes `public/derived.json`. It contains only channel/price aggregates,
+seasonality, and anonymous segment summaries. See `verification.md` for two
+Excel-reproducible worked calculations, including Retail/Grocery at €2.19.

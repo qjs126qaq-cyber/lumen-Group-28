@@ -226,7 +226,7 @@ the output directory set to **public**, and no environment variables or custom
 build command. All dashboard paths and data loads must be relative static-file
 paths so a clean Vercel deployment works without configuration code.
 
-- `scripts/build-derived.js`: reads raw data locally and writes aggregates.
+- `scripts/prepare-data.js`: reads raw data locally and writes aggregates.
 - `public/derived.json`: the only data file loaded by the page.
 - `public/index.html`, `public/styles.css`, `public/app.js`: dashboard.
 - `public/logic/*.js`: small commented modules for calculations and
@@ -236,7 +236,7 @@ paths so a clean Vercel deployment works without configuration code.
 
 - [x] **Step 1 — Verify data and write this binding brief.** Finish line:
   discrepancies, methodology, data contract and stack are approved.
-- [ ] **Step 2 — Build the local derived-data script.** Finish line:
+- [x] **Step 2 — Build the local derived-data script.** Finish line:
   `public/derived.json` validates against this contract; raw data is not
   exposed.
 - [ ] **Step 3 — Build the static page structure and visual system.** Finish
