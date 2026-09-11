@@ -66,3 +66,13 @@ This is the required grocery example.
 The result is a scenario, not a German sales forecast: LUMEN has no German
 sales history. NL/DK/SE figures are comparable-market benchmarks only.
 
+
+## Step 5 — presentation verification (2026-09-11)
+
+- PASS: All 18 channel × price × objective combinations checked in the browser using native selectors and keyboard activation. Each rendered exactly one chart with three bars, the correct channel and metric, and the correct selected price.
+- PASS: Browser console contained zero errors or warnings during these checks.
+- PASS: Reading order is recommendation, controls, results, targeting, chart, assumptions.
+- PASS: Assumptions begin alongside the initial page content on a wide layout (observed top: 665 CSS pixels); narrower layouts require scrolling to preserve readable text.
+- PASS: Chart reads the existing aggregate scenarios; no chart dependency or additional data request was added.
+- PASS: Recommendation module and derived.json are unchanged. Scenario formulas and objective recommendation behavior remain unchanged.
+- Step 6 privacy/deployment verification and README completion are pending, as requested.
