@@ -1,6 +1,45 @@
 <!doctype html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>LUMEN Launch Advisor</title><link rel="stylesheet" href="./styles.css"></head>
-<body><main class="advisor" aria-labelledby="page-title"><header><p class="eyebrow">LUMEN · Germany launch advisor</p><h1 id="page-title">Channel and price scenario</h1><p class="intro">Compare first-year commercial scenarios using the approved derived data.</p></header>
-<section class="controls" aria-label="Scenario controls"><label>Channel<select id="channel-select" name="channel"><option value="DTC Online">DTC Online</option><option value="Retail/Grocery">Retail/Grocery</option><option value="Gym &amp; Office">Gym &amp; Office</option></select></label><label>Price<select id="price-select" name="price"><option value="1.79">€1.79</option><option value="2.19" selected>€2.19</option><option value="2.59">€2.59</option></select></label></section>
-<section class="recommendation" aria-label="Recommendation"><div class="objective-toggle" role="group" aria-label="Recommendation objective"><button type="button" data-objective="market-share" aria-pressed="true">Market share</button><button type="button" data-objective="profitability" aria-pressed="false">Profitability</button></div><p id="recommendation-text" class="recommendation-text">Recommendation unavailable.</p><p id="runner-up" class="runner-up"></p><p id="target-line" class="target-line"></p></section>
-<p id="status" class="status" role="status" aria-live="polite"></p><section class="results" aria-label="Scenario results"><article><p>Estimated year-one units</p><strong id="units">n/a</strong></article><article><p>Retail revenue</p><strong id="revenue">n/a</strong></article><article><p>Contribution</p><strong id="contribution">n/a</strong></article></section></main><script type="module" src="./app.js"></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUMEN Launch Advisor</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<main class="advisor" aria-labelledby="page-title">
+  <header><p class="eyebrow">LUMEN · Germany launch advisor</p><h1 id="page-title">A clearer path to launch.</h1></header>
+  <section class="recommendation" aria-labelledby="recommendation-heading">
+    <h2 id="recommendation-heading">Launch recommendation</h2>
+    <p id="recommendation-text" class="recommendation-text" aria-live="polite">Recommendation unavailable.</p>
+    <p id="runner-up" class="runner-up"></p>
+    <p class="note">Best option across all channels for your objective. Explore an individual scenario below.</p>
+  </section>
+  <section class="controls" aria-label="Scenario controls">
+    <label>Channel<select id="channel-select" name="channel"><option value="DTC Online">DTC Online</option><option value="Retail/Grocery">Retail/Grocery</option><option value="Gym &amp; Office">Gym &amp; Office</option></select></label>
+    <label>Shelf price<select id="price-select" name="price"><option value="1.79">€1.79</option><option value="2.19" selected>€2.19</option><option value="2.59">€2.59</option></select></label>
+    <div><span class="control-label">Objective</span><div class="objective-toggle" role="group" aria-label="Recommendation objective"><button type="button" data-objective="market-share" aria-pressed="true">Market share</button><button type="button" data-objective="profitability" aria-pressed="false">Profitability</button></div></div>
+  </section>
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+  <section class="results" aria-label="Estimated year-one scenario" aria-live="polite">
+    <article><p>Estimated year-one units</p><strong id="units">n/a</strong></article><article><p>Retail revenue</p><strong id="revenue">n/a</strong></article><article><p>Contribution</p><strong id="contribution">n/a</strong></article>
+  </section>
+  <section class="targeting" aria-label="Target audience"><p id="target-line" class="target-line" aria-live="polite">Who to target: n/a.</p></section>
+  <section class="comparison" aria-labelledby="chart-heading">
+    <h2 id="chart-heading">Compare the three prices</h2>
+    <p id="chart-context" class="note" aria-live="polite">Comparison available after data loads.</p>
+    <div id="price-chart" class="price-chart" role="figure" aria-labelledby="chart-heading chart-context"></div>
+    <p class="note">Bars start at zero. Selected = your scenario; leader = highest value in this channel. Market share uses units as a proxy, not a measured market share.</p>
+  </section>
+  <aside class="assumptions" aria-labelledby="assumptions-heading">
+    <h2 id="assumptions-heading">Assumptions &amp; limitations</h2>
+    <p><strong>No German LUMEN sales exist.</strong> These are planning scenarios, not forecasts or guaranteed returns.</p>
+    <p>We remove duplicate sales records from the Netherlands, Denmark and Sweden, then convert 78 weeks into a yearly benchmark. We scale this by the relevant German category share (<span id="category-share">—</span>) and a cautious <span id="entry-scale">—</span> entry assumption, then adjust for German price acceptance and channel preference.</p>
+    <p>Units are rounded to the nearest 100. Retail revenue is units × shelf price; contribution is units × tested channel contribution per can. Contribution is not net profit and does not deduct all launch or fixed costs.</p>
+    <p>Survey intent may not become purchases, and established markets may not reflect a new German launch. Seasonality guides timing; it does not increase the annual total. Actual distribution, competition and launch execution can change the outcome.</p>
+  </aside>
+</main>
+<script type="module" src="./app.js"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 # LUMEN Germany Launch Advisor — binding product brief
 
-**Status:** Step 1 complete — awaiting approval  
+**Status:** Step 5 implemented locally — awaiting review; Step 6 pending
 **Last updated:** 2026-09-10
 
 ## 1. Product vision
@@ -244,7 +244,7 @@ paths so a clean Vercel deployment works without configuration code.
   live data logic.
 - [ ] **Step 4 — Implement scenario, recommendation and target logic.** Finish
   line: selectors and objective toggle update from `derived.json` only.
-- [ ] **Step 5 — Add the single comparison chart and plain-language
+- [x] **Step 5 — Add the single comparison chart and plain-language
   limitations.** Finish line: one readable chart and every caveat is visible.
 - [ ] **Step 6 — Verify privacy, calculations and static deployment.** Finish
   line: no raw CSV/browser references; formulas and outputs pass checks; a
