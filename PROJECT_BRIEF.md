@@ -1,6 +1,6 @@
 # LUMEN Germany Launch Advisor — binding product brief
 
-**Status:** Step 5 merged; Step 6 verified locally — awaiting review
+**Status:** Step 6 merged; supplied three-page frontend adapted locally — awaiting review
 **Last updated:** 2026-09-11
 
 ## 1. Product vision
@@ -257,3 +257,9 @@ paths so a clean Vercel deployment works without configuration code.
 
 Step 6 records the existing recommendation and target-score differences in README.md. Deployment now has an explicit public-only output configuration. Live hosting remains unverified; the supplied raw CSVs remain public in GitHub. No scenario or recommendation logic changed in Step 6.
 
+
+## Frontend adaptation (11 September 2026)
+
+The user supplied a three-page HTML/CSS/JS frontend and requested adaptation to this case. The advisor now offers explicitly labelled exploratory interpolation in addition to the original tested scenarios; recommendations still rank tested prices only. Market and benchmark views use added aggregates computed from source case data. This supersedes the original single-page scope for this adaptation. See README.md and verification.md for formulas, context and limitations.
+
+Latest user refinement: City Markets contains all five named case cities, category allocations and four competitor brands by channel. Launch Advisor uses a compact city selector alongside channel, price and objective. Comparable Markets contains only national NL/DK/SE/Germany comparisons; no cities.
