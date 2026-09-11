@@ -24,12 +24,12 @@ def keys(value, allowed):
     return isinstance(value, dict) and set(value) == set(allowed.split())
 
 files = [p for p in PUBLIC.rglob('*') if p.is_file()]
-allowed_files = {'index.html', 'styles.css', 'app.js', 'recommendation-logic.js', 'derived.json'}
+allowed_files = {'index.html', 'market.html', 'benchmarks.html', 'css/styles.css', 'js/advisor.js', 'js/data.js', 'js/logic.js', 'js/market.js', 'js/benchmarks.js', 'js/cities.js', 'recommendation-logic.js', 'derived.json'}
 check({p.relative_to(PUBLIC).as_posix() for p in files} == allowed_files
       and not any(p.is_symlink() for p in PUBLIC.rglob('*')),
-      'Static output contains only five expected assets, no CSVs or symlinks')
+      'Static output contains only twelve expected assets, no CSVs or symlinks')
 d = json.loads((PUBLIC / 'derived.json').read_text())
-shape = keys(d, 'meta summary channels pricesEur scenarios topSegmentsByChannel seasonality competitorSummary assumptions')
+shape = keys(d, 'meta summary channels pricesEur scenarios topSegmentsByChannel seasonality competitorSummary assumptions channelDetails benchmarks regions recommendedRegion categories competitorChannels')
 shape &= keys(d['meta'], 'generatedAt methodVersion caveat')
 shape &= keys(d['summary'], 'germanFunctionalMarketEur2026 relevantCategoryShare entryScaleAssumption cleanedHistoricalSalesRows removedDuplicateHistoricalSalesRows launchWindow recommendation')
 channels = ['DTC Online', 'Retail/Grocery', 'Gym & Office']
@@ -44,6 +44,22 @@ for channel in channels:
 shape &= len(d['seasonality']) == 12 and all(keys(x, 'month index shareOfYear') for x in d['seasonality'])
 shape &= len(d['competitorSummary']) == 4 and all(keys(x, 'name minPriceEur maxPriceEur') for x in d['competitorSummary'])
 shape &= all(isinstance(x, str) for x in d['assumptions'])
+
+shape &= set(d['channelDetails']) == set(channels)
+for detail in d['channelDetails'].values():
+    shape &= keys(detail, 'id floorPriceEur topSegments')
+    shape &= len(detail['topSegments']) == 2 and all(keys(x, 'name intent') for x in detail['topSegments'])
+shape &= keys(d['benchmarks'], 'referencePriceEur note channels') and len(d['benchmarks']['channels']) == 3
+for b in d['benchmarks']['channels']:
+    shape &= keys(b, 'id label actuals germany_estimate') and set(b['actuals']) == {'NL', 'DK', 'SE'}
+    shape &= all(keys(x, 'units_wk revenue_wk') for x in [*b['actuals'].values(), b['germany_estimate']])
+shape &= len(d['regions']) == 6 and all(keys(r, 'name x y market_size_m share growth note') for r in d['regions'])
+shape &= abs(sum(r['share'] for r in d['regions']) - 1) < 1e-9
+shape &= len(d['categories']) == 4 and all(keys(c, 'name marketEur share') for c in d['categories'])
+shape &= len(d['competitorChannels']) == 3
+for group in d['competitorChannels']:
+    shape &= keys(group, 'channel competitors') and len(group['competitors']) == 4
+    shape &= all(keys(c, 'name singleCanPriceEur minPriceEur maxPriceEur') for c in group['competitors'])
 check(shape, 'Derived JSON has only the reviewed aggregate structure (nine scenarios)')
 
 with (ROOT / 'data/customer_survey.csv').open() as f:

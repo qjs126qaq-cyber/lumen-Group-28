@@ -83,6 +83,8 @@ function build() {
   const sales = uniqueRows(readCsv('historical_sales_weekly.csv'));
   const priceTests = readCsv('price_test_results.csv');
   const seasonality = readCsv('seasonality_and_weather.csv');
+  const economics = readCsv('channel_economics.csv');
+  const cogs = number(readCsv('cost_breakdown.csv').find(r => r.cost_component.startsWith('TOTAL COGS')).cost_per_unit_eur);
 
   const categoryRows = market.filter((row) => row.dimension_type === 'subcategory' && row.year === '2026');
   const totalMarket = categoryRows.reduce((sum, row) => sum + number(row.value), 0);
@@ -133,7 +135,52 @@ function build() {
     competitors.set(row.competitor, pricesForCompetitor);
   }
 
+  // New frontend context: all derived from case aggregates, never source records.
+  const ids = { 'DTC Online': 'dtc', 'Retail/Grocery': 'grocery', 'Gym & Office': 'gym' };
+  const channelDetails = {};
+  for (const channel of channels) {
+    const e = economics.find(r => r.channel === channel && r.illustrative_retail_price_eur === '2.19');
+    const retained = 1 - number(e.retailer_margin_pct) - number(e.distributor_cut_pct) - number(e.payment_processing_pct);
+    channelDetails[channel] = {
+      id: ids[channel],
+      // Illustrative shelf-price threshold, excluding fixed and launch costs.
+      floorPriceEur: round((cogs + number(e.fulfillment_cost_eur)) / retained, 4),
+      topSegments: topSegmentsByChannel[channel].map(name => ({ name,
+        intent: round(mean(survey.filter(r => r.segment === name).map(r => number(r.lumen_purchase_intent_1_10))), 1) }))
+    };
+  }
+  const benchmarks = { referencePriceEur: 2.19,
+    note: 'Source-market weekly averages are deduplicated case sales totals divided by 78 weeks. Germany is the year-one scenario at €2.19 divided by 52; it is not observed sales. These are different countries and horizons, not causal evidence.',
+    channels: channels.map(channel => ({ id: ids[channel], label: channel,
+      actuals: Object.fromEntries(['NL', 'DK', 'SE'].map(country => {
+        const rows = sales.filter(r => r.channel === channel && r.country === ({ NL: 'Netherlands', DK: 'Denmark', SE: 'Sweden' }[country]));
+        if (rows.length !== 78) throw new Error('Expected 78 cleaned weeks per market and channel');
+        return [country, { units_wk: round(rows.reduce((a,r) => a + number(r.units_sold), 0) / 78, 2),
+          revenue_wk: round(rows.reduce((a,r) => a + number(r.revenue_eur), 0) / 78, 2) }];
+      })), germany_estimate: { units_wk: round(scenarios[channel]['2.19'].estimatedYear1Units / 52, 2),
+        revenue_wk: round(scenarios[channel]['2.19'].retailRevenueEur / 52, 2) }
+    })) };
+  // Approximate schematic marker locations are presentation coordinates, not geographic evidence.
+  const coordinates = { Berlin: [305,145], Hamburg: [190,85], Munich: [260,385], Cologne: [80,220], Frankfurt: [140,270] };
+  const regions = market.filter(r => r.dimension_type === 'region' && r.metric === 'population_share_of_market' && r.year === '2026').map(r => ({
+    name: r.name, x: coordinates[r.name]?.[0] ?? null, y: coordinates[r.name]?.[1] ?? null,
+    market_size_m: round(totalMarket * number(r.value) / 1000000, 1), share: number(r.value),
+    growth: number(market.find(g => g.name === r.name && g.metric === 'regional_cagr' && g.year === '2026').value),
+    note: 'Illustrative 2026 allocation of the full German functional-beverage market; not measured city sales or LUMEN revenue.'
+  }));
+  const recommendedRegion = [...regions].filter(r => r.x !== null).sort((a,b) => b.share-a.share)[0].name;
+
   return {
+    channelDetails, benchmarks, regions, recommendedRegion,
+    categories: categoryRows.map(r => ({ name: r.name, marketEur: number(r.value), share: round(number(r.value) / totalMarket, 4) })),
+    competitorChannels: channels.map(channel => ({ channel,
+      competitors: [...competitors.keys()].map(name => {
+        const rows = competitorPrices.filter(r => r.channel === channel && r.competitor === name);
+        const single = rows.find(r => r.format === 'Single can (330ml)');
+        return { name, singleCanPriceEur: single ? number(single.price_eur) : null,
+          minPriceEur: rows.length ? Math.min(...rows.map(r => number(r.price_eur))) : null,
+          maxPriceEur: rows.length ? Math.max(...rows.map(r => number(r.price_eur))) : null };
+      }) })) ,
     meta: {
       generatedAt: new Date().toISOString(),
       methodVersion: '1.0',

@@ -1,6 +1,290 @@
 {
+  "channelDetails": {
+    "DTC Online": {
+      "id": "dtc",
+      "floorPriceEur": 0.999,
+      "topSegments": [
+        {
+          "name": "Urban Wellness Professionals",
+          "intent": 9.1
+        },
+        {
+          "name": "Fitness & Gym-Goers",
+          "intent": 8
+        }
+      ]
+    },
+    "Retail/Grocery": {
+      "id": "grocery",
+      "floorPriceEur": 1.0877,
+      "topSegments": [
+        {
+          "name": "On-the-go Commuters",
+          "intent": 6.7
+        },
+        {
+          "name": "Fitness & Gym-Goers",
+          "intent": 8
+        }
+      ]
+    },
+    "Gym & Office": {
+      "id": "gym",
+      "floorPriceEur": 0.775,
+      "topSegments": [
+        {
+          "name": "Fitness & Gym-Goers",
+          "intent": 8
+        },
+        {
+          "name": "On-the-go Commuters",
+          "intent": 6.7
+        }
+      ]
+    }
+  },
+  "benchmarks": {
+    "referencePriceEur": 2.19,
+    "note": "Source-market weekly averages are deduplicated case sales totals divided by 78 weeks. Germany is the year-one scenario at €2.19 divided by 52; it is not observed sales. These are different countries and horizons, not causal evidence.",
+    "channels": [
+      {
+        "id": "dtc",
+        "label": "DTC Online",
+        "actuals": {
+          "NL": {
+            "units_wk": 1951.17,
+            "revenue_wk": 2633.64
+          },
+          "DK": {
+            "units_wk": 1372.91,
+            "revenue_wk": 1852.81
+          },
+          "SE": {
+            "units_wk": 1578.24,
+            "revenue_wk": 2132.97
+          }
+        },
+        "germany_estimate": {
+          "units_wk": 1153.85,
+          "revenue_wk": 2526.92
+        }
+      },
+      {
+        "id": "grocery",
+        "label": "Retail/Grocery",
+        "actuals": {
+          "NL": {
+            "units_wk": 3618.35,
+            "revenue_wk": 4884.92
+          },
+          "DK": {
+            "units_wk": 1765.04,
+            "revenue_wk": 2375.83
+          },
+          "SE": {
+            "units_wk": 2344.15,
+            "revenue_wk": 3171.53
+          }
+        },
+        "germany_estimate": {
+          "units_wk": 1611.54,
+          "revenue_wk": 3529.27
+        }
+      },
+      {
+        "id": "gym",
+        "label": "Gym & Office",
+        "actuals": {
+          "NL": {
+            "units_wk": 977.1,
+            "revenue_wk": 1317.52
+          },
+          "DK": {
+            "units_wk": 784.81,
+            "revenue_wk": 1060.51
+          },
+          "SE": {
+            "units_wk": 990.83,
+            "revenue_wk": 1338.55
+          }
+        },
+        "germany_estimate": {
+          "units_wk": 592.31,
+          "revenue_wk": 1297.15
+        }
+      }
+    ]
+  },
+  "regions": [
+    {
+      "name": "Berlin",
+      "x": 305,
+      "y": 145,
+      "market_size_m": 1638,
+      "share": 0.18,
+      "growth": 0.09,
+      "note": "Illustrative 2026 allocation of the full German functional-beverage market; not measured city sales or LUMEN revenue."
+    },
+    {
+      "name": "Munich",
+      "x": 260,
+      "y": 385,
+      "market_size_m": 1365,
+      "share": 0.15,
+      "growth": 0.09,
+      "note": "Illustrative 2026 allocation of the full German functional-beverage market; not measured city sales or LUMEN revenue."
+    },
+    {
+      "name": "Hamburg",
+      "x": 190,
+      "y": 85,
+      "market_size_m": 910,
+      "share": 0.1,
+      "growth": 0.07,
+      "note": "Illustrative 2026 allocation of the full German functional-beverage market; not measured city sales or LUMEN revenue."
+    },
+    {
+      "name": "Cologne",
+      "x": 80,
+      "y": 220,
+      "market_size_m": 819,
+      "share": 0.09,
+      "growth": 0.07,
+      "note": "Illustrative 2026 allocation of the full German functional-beverage market; not measured city sales or LUMEN revenue."
+    },
+    {
+      "name": "Frankfurt",
+      "x": 140,
+      "y": 270,
+      "market_size_m": 728,
+      "share": 0.08,
+      "growth": 0.07,
+      "note": "Illustrative 2026 allocation of the full German functional-beverage market; not measured city sales or LUMEN revenue."
+    },
+    {
+      "name": "Other Germany",
+      "x": null,
+      "y": null,
+      "market_size_m": 3640,
+      "share": 0.4,
+      "growth": 0.07,
+      "note": "Illustrative 2026 allocation of the full German functional-beverage market; not measured city sales or LUMEN revenue."
+    }
+  ],
+  "recommendedRegion": "Berlin",
+  "categories": [
+    {
+      "name": "Energy / focus",
+      "marketEur": 2548000000,
+      "share": 0.28
+    },
+    {
+      "name": "Hydration",
+      "marketEur": 2821000000,
+      "share": 0.31
+    },
+    {
+      "name": "Plant-based / adaptogenic",
+      "marketEur": 2184000000,
+      "share": 0.24
+    },
+    {
+      "name": "Other functional",
+      "marketEur": 1547000000,
+      "share": 0.17
+    }
+  ],
+  "competitorChannels": [
+    {
+      "channel": "DTC Online",
+      "competitors": [
+        {
+          "name": "PulsUp",
+          "singleCanPriceEur": 1.15,
+          "minPriceEur": 0.98,
+          "maxPriceEur": 1.15
+        },
+        {
+          "name": "Mate Libre",
+          "singleCanPriceEur": null,
+          "minPriceEur": null,
+          "maxPriceEur": null
+        },
+        {
+          "name": "VoltFit",
+          "singleCanPriceEur": 2.49,
+          "minPriceEur": 2.19,
+          "maxPriceEur": 2.49
+        },
+        {
+          "name": "Root & Rise",
+          "singleCanPriceEur": 3.11,
+          "minPriceEur": 2.67,
+          "maxPriceEur": 3.11
+        }
+      ]
+    },
+    {
+      "channel": "Retail/Grocery",
+      "competitors": [
+        {
+          "name": "PulsUp",
+          "singleCanPriceEur": 1.07,
+          "minPriceEur": 0.96,
+          "maxPriceEur": 1.07
+        },
+        {
+          "name": "Mate Libre",
+          "singleCanPriceEur": 1.59,
+          "minPriceEur": 1.37,
+          "maxPriceEur": 1.59
+        },
+        {
+          "name": "VoltFit",
+          "singleCanPriceEur": 2.37,
+          "minPriceEur": 2.1,
+          "maxPriceEur": 2.37
+        },
+        {
+          "name": "Root & Rise",
+          "singleCanPriceEur": 2.98,
+          "minPriceEur": 2.54,
+          "maxPriceEur": 2.98
+        }
+      ]
+    },
+    {
+      "channel": "Gym & Office",
+      "competitors": [
+        {
+          "name": "PulsUp",
+          "singleCanPriceEur": 1.28,
+          "minPriceEur": 1.18,
+          "maxPriceEur": 1.28
+        },
+        {
+          "name": "Mate Libre",
+          "singleCanPriceEur": 1.83,
+          "minPriceEur": 1.73,
+          "maxPriceEur": 1.83
+        },
+        {
+          "name": "VoltFit",
+          "singleCanPriceEur": 2.72,
+          "minPriceEur": 2.66,
+          "maxPriceEur": 2.72
+        },
+        {
+          "name": "Root & Rise",
+          "singleCanPriceEur": null,
+          "minPriceEur": null,
+          "maxPriceEur": null
+        }
+      ]
+    }
+  ],
   "meta": {
-    "generatedAt": "2026-09-10T15:20:00.000Z",
+    "generatedAt": "2026-09-11T10:18:57.424Z",
     "methodVersion": "1.0",
     "caveat": "No German LUMEN sales history exists; NL/DK/SE are demand-pattern benchmarks only, never a German forecast."
   },
@@ -13,37 +297,193 @@
     "launchWindow": "Mid-April to early May",
     "recommendation": "Launch at €2.19 through DTC Online and Gym & Office first; use Retail/Grocery later for scale."
   },
-  "channels": ["DTC Online", "Retail/Grocery", "Gym & Office"],
-  "pricesEur": [1.79, 2.19, 2.59],
+  "channels": [
+    "DTC Online",
+    "Retail/Grocery",
+    "Gym & Office"
+  ],
+  "pricesEur": [
+    1.79,
+    2.19,
+    2.59
+  ],
   "scenarios": {
     "DTC Online": {
-      "1.79": {"acceptancePct": 61.7, "estimatedYear1Units": 71600, "retailRevenueEur": 128164, "contributionEur": 55132, "unitContributionEur": 0.77, "contributionMarginPct": 55.3},
-      "2.19": {"acceptancePct": 51.7, "estimatedYear1Units": 60000, "retailRevenueEur": 131400, "contributionEur": 69600, "unitContributionEur": 1.16, "contributionMarginPct": 65.1},
-      "2.59": {"acceptancePct": 26.7, "estimatedYear1Units": 31000, "retailRevenueEur": 80290, "contributionEur": 47740, "unitContributionEur": 1.54, "contributionMarginPct": 71.4}
+      "1.79": {
+        "acceptancePct": 61.7,
+        "estimatedYear1Units": 71600,
+        "retailRevenueEur": 128164,
+        "contributionEur": 55132,
+        "unitContributionEur": 0.77,
+        "contributionMarginPct": 55.3
+      },
+      "2.19": {
+        "acceptancePct": 51.7,
+        "estimatedYear1Units": 60000,
+        "retailRevenueEur": 131400,
+        "contributionEur": 69600,
+        "unitContributionEur": 1.16,
+        "contributionMarginPct": 65.1
+      },
+      "2.59": {
+        "acceptancePct": 26.7,
+        "estimatedYear1Units": 31000,
+        "retailRevenueEur": 80290,
+        "contributionEur": 47740,
+        "unitContributionEur": 1.54,
+        "contributionMarginPct": 71.4
+      }
     },
     "Retail/Grocery": {
-      "1.79": {"acceptancePct": 61.7, "estimatedYear1Units": 100000, "retailRevenueEur": 179000, "contributionEur": 40000, "unitContributionEur": 0.4, "contributionMarginPct": 39.2},
-      "2.19": {"acceptancePct": 51.7, "estimatedYear1Units": 83800, "retailRevenueEur": 183522, "contributionEur": 52794, "unitContributionEur": 0.63, "contributionMarginPct": 50.3},
-      "2.59": {"acceptancePct": 26.7, "estimatedYear1Units": 43300, "retailRevenueEur": 112147, "contributionEur": 37238, "unitContributionEur": 0.86, "contributionMarginPct": 58}
+      "1.79": {
+        "acceptancePct": 61.7,
+        "estimatedYear1Units": 100000,
+        "retailRevenueEur": 179000,
+        "contributionEur": 40000,
+        "unitContributionEur": 0.4,
+        "contributionMarginPct": 39.2
+      },
+      "2.19": {
+        "acceptancePct": 51.7,
+        "estimatedYear1Units": 83800,
+        "retailRevenueEur": 183522,
+        "contributionEur": 52794,
+        "unitContributionEur": 0.63,
+        "contributionMarginPct": 50.3
+      },
+      "2.59": {
+        "acceptancePct": 26.7,
+        "estimatedYear1Units": 43300,
+        "retailRevenueEur": 112147,
+        "contributionEur": 37238,
+        "unitContributionEur": 0.86,
+        "contributionMarginPct": 58
+      }
     },
     "Gym & Office": {
-      "1.79": {"acceptancePct": 61.7, "estimatedYear1Units": 36800, "retailRevenueEur": 65872, "contributionEur": 29808, "unitContributionEur": 0.81, "contributionMarginPct": 56.7},
-      "2.19": {"acceptancePct": 51.7, "estimatedYear1Units": 30800, "retailRevenueEur": 67452, "contributionEur": 34804, "unitContributionEur": 1.13, "contributionMarginPct": 64.6},
-      "2.59": {"acceptancePct": 26.7, "estimatedYear1Units": 15900, "retailRevenueEur": 41181, "contributionEur": 23055, "unitContributionEur": 1.45, "contributionMarginPct": 70.1}
+      "1.79": {
+        "acceptancePct": 61.7,
+        "estimatedYear1Units": 36800,
+        "retailRevenueEur": 65872,
+        "contributionEur": 29808,
+        "unitContributionEur": 0.81,
+        "contributionMarginPct": 56.7
+      },
+      "2.19": {
+        "acceptancePct": 51.7,
+        "estimatedYear1Units": 30800,
+        "retailRevenueEur": 67452,
+        "contributionEur": 34804,
+        "unitContributionEur": 1.13,
+        "contributionMarginPct": 64.6
+      },
+      "2.59": {
+        "acceptancePct": 26.7,
+        "estimatedYear1Units": 15900,
+        "retailRevenueEur": 41181,
+        "contributionEur": 23055,
+        "unitContributionEur": 1.45,
+        "contributionMarginPct": 70.1
+      }
     }
   },
   "topSegmentsByChannel": {
-    "DTC Online": ["Urban Wellness Professionals", "Fitness & Gym-Goers"],
-    "Retail/Grocery": ["On-the-go Commuters", "Fitness & Gym-Goers"],
-    "Gym & Office": ["Fitness & Gym-Goers", "On-the-go Commuters"]
+    "DTC Online": [
+      "Urban Wellness Professionals",
+      "Fitness & Gym-Goers"
+    ],
+    "Retail/Grocery": [
+      "On-the-go Commuters",
+      "Fitness & Gym-Goers"
+    ],
+    "Gym & Office": [
+      "Fitness & Gym-Goers",
+      "On-the-go Commuters"
+    ]
   },
   "seasonality": [
-    {"month": 1, "index": 78, "shareOfYear": 0.063934}, {"month": 2, "index": 80, "shareOfYear": 0.065574}, {"month": 3, "index": 88, "shareOfYear": 0.072131}, {"month": 4, "index": 98, "shareOfYear": 0.080328},
-    {"month": 5, "index": 118, "shareOfYear": 0.096721}, {"month": 6, "index": 132, "shareOfYear": 0.108197}, {"month": 7, "index": 138, "shareOfYear": 0.113115}, {"month": 8, "index": 128, "shareOfYear": 0.104918},
-    {"month": 9, "index": 104, "shareOfYear": 0.085246}, {"month": 10, "index": 90, "shareOfYear": 0.07377}, {"month": 11, "index": 82, "shareOfYear": 0.067213}, {"month": 12, "index": 84, "shareOfYear": 0.068852}
+    {
+      "month": 1,
+      "index": 78,
+      "shareOfYear": 0.063934
+    },
+    {
+      "month": 2,
+      "index": 80,
+      "shareOfYear": 0.065574
+    },
+    {
+      "month": 3,
+      "index": 88,
+      "shareOfYear": 0.072131
+    },
+    {
+      "month": 4,
+      "index": 98,
+      "shareOfYear": 0.080328
+    },
+    {
+      "month": 5,
+      "index": 118,
+      "shareOfYear": 0.096721
+    },
+    {
+      "month": 6,
+      "index": 132,
+      "shareOfYear": 0.108197
+    },
+    {
+      "month": 7,
+      "index": 138,
+      "shareOfYear": 0.113115
+    },
+    {
+      "month": 8,
+      "index": 128,
+      "shareOfYear": 0.104918
+    },
+    {
+      "month": 9,
+      "index": 104,
+      "shareOfYear": 0.085246
+    },
+    {
+      "month": 10,
+      "index": 90,
+      "shareOfYear": 0.07377
+    },
+    {
+      "month": 11,
+      "index": 82,
+      "shareOfYear": 0.067213
+    },
+    {
+      "month": 12,
+      "index": 84,
+      "shareOfYear": 0.068852
+    }
   ],
   "competitorSummary": [
-    {"name": "PulsUp", "minPriceEur": 0.96, "maxPriceEur": 1.28}, {"name": "Mate Libre", "minPriceEur": 1.37, "maxPriceEur": 1.83}, {"name": "VoltFit", "minPriceEur": 2.1, "maxPriceEur": 2.72}, {"name": "Root & Rise", "minPriceEur": 2.54, "maxPriceEur": 3.11}
+    {
+      "name": "PulsUp",
+      "minPriceEur": 0.96,
+      "maxPriceEur": 1.28
+    },
+    {
+      "name": "Mate Libre",
+      "minPriceEur": 1.37,
+      "maxPriceEur": 1.83
+    },
+    {
+      "name": "VoltFit",
+      "minPriceEur": 2.1,
+      "maxPriceEur": 2.72
+    },
+    {
+      "name": "Root & Rise",
+      "minPriceEur": 2.54,
+      "maxPriceEur": 3.11
+    }
   ],
   "assumptions": [
     "Germany has no LUMEN sales history; NL/DK/SE sales are cleaned channel benchmarks only.",
@@ -53,4 +493,3 @@
     "Seasonality distributes the annual scenario across months; it does not inflate a full 12-month total."
   ]
 }
-
