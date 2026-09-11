@@ -1,45 +1,98 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LUMEN Launch Advisor</title>
-  <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Launch Advisor — LUMEN Germany</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<main class="advisor" aria-labelledby="page-title">
-  <header><p class="eyebrow">LUMEN · Germany launch advisor</p><h1 id="page-title">A clearer path to launch.</h1></header>
-  <section class="recommendation" aria-labelledby="recommendation-heading">
-    <h2 id="recommendation-heading">Launch recommendation</h2>
-    <p id="recommendation-text" class="recommendation-text" aria-live="polite">Recommendation unavailable.</p>
-    <p id="runner-up" class="runner-up"></p>
-    <p class="note">Best option across all channels for your objective. Explore an individual scenario below.</p>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="brand">LUMEN<span class="dot">.</span> Germany Launch</span>
+    <a href="index.html" class="active" aria-current="page">Launch Advisor</a>
+    <a href="market.html">City Markets</a>
+    <a href="benchmarks.html">Comparable Markets</a>
+  </div>
+</nav>
+
+<main>
+  <h1>Launch Advisor</h1>
+  <p class="subtitle">In which city, at what price, and through which channel should LUMEN launch?
+  All German figures are year-1 estimates — LUMEN has never sold in Germany.</p>
+
+  <div class="banner" id="banner" aria-live="polite">
+    <p class="headline" id="banner-headline">Loading…</p>
+    <p class="subline" id="banner-subline"></p>
+  </div>
+
+  <section class="controls">
+    <div class="control">
+      <label class="title" for="city-select">Launch city</label>
+      <select id="city-select" aria-describedby="city-help"></select>
+      <p id="city-help" class="bench-note">Illustrative allocation of the national scenario; the same price response is assumed across cities.</p>
+    </div>
+    <div class="control">
+      <label class="title" id="channel-label">Channel</label>
+      <div class="seg" id="channel-seg" role="group" aria-labelledby="channel-label"></div>
+    </div>
+
+    <div class="control slider-wrap">
+      <label class="title" for="price-slider">Shelf price
+        <span class="price-readout" id="price-readout"></span>
+        <span class="price-mode" id="price-mode"></span>
+      </label>
+      <div class="slider-row">
+        <input type="range" id="price-slider" min="179" max="259" step="1" value="219"
+               aria-describedby="price-mode">
+      </div>
+      <div class="slider-ticks" id="price-ticks" aria-hidden="true"></div>
+      <div class="tested-prices" id="tested-prices" role="group" aria-label="Tested prices"></div>
+    </div>
+
+    <div class="control">
+      <label class="title" id="objective-label">Objective</label>
+      <div class="seg" id="objective-seg" role="group" aria-labelledby="objective-label">
+        <button data-objective="profit" aria-pressed="false">Profitability</button>
+        <button data-objective="share" aria-pressed="true">Market share</button>
+      </div>
+    </div>
   </section>
-  <section class="controls" aria-label="Scenario controls">
-    <label>Channel<select id="channel-select" name="channel"><option value="DTC Online">DTC Online</option><option value="Retail/Grocery">Retail/Grocery</option><option value="Gym &amp; Office">Gym &amp; Office</option></select></label>
-    <label>Shelf price<select id="price-select" name="price"><option value="1.79">€1.79</option><option value="2.19" selected>€2.19</option><option value="2.59">€2.59</option></select></label>
-    <div><span class="control-label">Objective</span><div class="objective-toggle" role="group" aria-label="Recommendation objective"><button type="button" data-objective="market-share" aria-pressed="true">Market share</button><button type="button" data-objective="profitability" aria-pressed="false">Profitability</button></div></div>
+
+  <section>
+    <div class="results" id="results" aria-live="polite"></div>
+    <p class="floor-note" id="floor-note"></p>
+    <p class="target-line" id="target-line"></p>
+    <p class="floor-note" id="positioning-line"></p>
   </section>
-  <p id="status" class="status" role="status" aria-live="polite"></p>
-  <section class="results" aria-label="Estimated year-one scenario" aria-live="polite">
-    <article><p>Estimated year-one units</p><strong id="units">n/a</strong></article><article><p>Retail revenue</p><strong id="revenue">n/a</strong></article><article><p>Contribution</p><strong id="contribution">n/a</strong></article>
+
+  <div class="evidence-grid">
+  <section class="chart" id="chart">
+    <h2 id="chart-title">Tested prices compared</h2>
+    <div class="bars" id="chart-bars" role="figure" aria-labelledby="chart-title"></div>
+  <p class="bench-note">Bars share a zero baseline. Leader is the best tested price in this channel; the banner ranks all channels. Market share uses units as a proxy. Interpolated prices are never recommended.</p>
   </section>
-  <section class="targeting" aria-label="Target audience"><p id="target-line" class="target-line" aria-live="polite">Who to target: n/a.</p></section>
-  <section class="comparison" aria-labelledby="chart-heading">
-    <h2 id="chart-heading">Compare the three prices</h2>
-    <p id="chart-context" class="note" aria-live="polite">Comparison available after data loads.</p>
-    <div id="price-chart" class="price-chart" role="figure" aria-labelledby="chart-heading chart-context"></div>
-    <p class="note">Bars start at zero. Selected = your scenario; leader = highest value in this channel. Market share uses units as a proxy, not a measured market share.</p>
+
+  <section class="assumptions">
+    <h2>Assumptions &amp; limitations</h2>
+    <ul>
+      <li><strong>No German sales exist.</strong> Units are estimated from 78 weeks of
+        NL/DK/SE sales, deduplicated and annualised, multiplied by the 52% relevant-category share and a 50% entry-scale assumption, then adjusted with German survey acceptance and channel intent. The city view allocates that scenario by city share, assumes the same response in every city, and rounds city units to hundreds. See the methodology in the README.</li>
+      <li><strong>Only three prices were tested</strong> (€1.79, €2.19, €2.59). Slider
+        positions between them are linear interpolations — exploratory only, and never
+        used for the recommendation.</li>
+      <li><strong>Contribution</strong> uses channel economics (what LUMEN nets after
+        retailer, distributor, payment and fulfilment costs), not shelf revenue. It excludes fixed and launch costs and is not net profit. Units are rounded to hundreds; money is calculated from those rounded units.</li>
+      <li><strong>Seasonality</strong> comes from the monthly demand index; the launch
+        window is mid-April to early May, ahead of the June–August peak; annual totals are not increased. Survey intent may not become purchases.</li>
+    </ul>
   </section>
-  <aside class="assumptions" aria-labelledby="assumptions-heading">
-    <h2 id="assumptions-heading">Assumptions &amp; limitations</h2>
-    <p><strong>No German LUMEN sales exist.</strong> These are planning scenarios, not forecasts or guaranteed returns.</p>
-    <p>We remove duplicate sales records from the Netherlands, Denmark and Sweden, then convert 78 weeks into a yearly benchmark. We scale this by the relevant German category share (<span id="category-share">—</span>) and a cautious <span id="entry-scale">—</span> entry assumption, then adjust for German price acceptance and channel preference.</p>
-    <p>Units are rounded to the nearest 100. Retail revenue is units × shelf price; contribution is units × tested channel contribution per can. Contribution is not net profit and does not deduct all launch or fixed costs.</p>
-    <p>Survey intent may not become purchases, and established markets may not reflect a new German launch. Seasonality guides timing; it does not increase the annual total. Actual distribution, competition and launch execution can change the outcome.</p>
-  </aside>
+  </div>
+  <section class="competitor-panel" aria-labelledby="competitor-title"><h2 id="competitor-title">Competitor prices by channel</h2><div class="table-wrap"><table id="competitor-table"></table></div><p id="competitor-note" class="bench-note"></p></section>
 </main>
-<script type="module" src="./app.js"></script>
+
+<script type="module" src="js/advisor.js"></script>
 </body>
 </html>

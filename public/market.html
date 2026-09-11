@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>City Markets — LUMEN Germany</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="brand">LUMEN<span class="dot">.</span> Germany Launch</span>
+    <a href="index.html">Launch Advisor</a>
+    <a href="market.html" class="active" aria-current="page">City Markets</a>
+    <a href="benchmarks.html">Comparable Markets</a>
+  </div>
+</nav>
+
+<main>
+  <h1>City Market Dashboard</h1>
+  <p class="subtitle">Start with a city, compare its allocated category opportunity, then inspect the four competitor brands by channel.</p>
+  <section aria-labelledby="city-heading"><h2 id="city-heading">Five cities · 2026 case allocations</h2>
+    <div id="city-options" class="city-options" role="group" aria-label="Focus city"></div>
+    <p class="bench-note">The five named cities account for 60% of the case market. Other Germany represents the remaining 40% (€3.64bn); it is a regional remainder, not a sixth city. These are illustrative shares, not measured city demand.</p>
+  </section>
+  <section aria-labelledby="category-title"><h2 id="category-title">Functional-beverage categories</h2>
+    <div id="category-cards" class="category-cards" aria-live="polite"></div><p id="category-note" class="bench-note"></p>
+  </section>
+  <section class="competitor-panel" aria-labelledby="competitor-title">
+    <label for="market-channel">Compare prices by channel</label><select id="market-channel"></select>
+    <h2 id="competitor-title">Four competitor brands</h2><div class="table-wrap"><table id="competitor-table"></table></div><p id="competitor-note" class="bench-note"></p>
+  </section>
+</main>
+
+<script type="module" src="js/market.js"></script>
+</body>
+</html>
