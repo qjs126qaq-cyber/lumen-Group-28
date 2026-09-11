@@ -1,0 +1,4 @@
+# Only the static website and its configuration belong in deployment uploads.
+/*
+!/public
+!/vercel.json
