@@ -1,7 +1,7 @@
 # LUMEN Germany Launch Advisor — binding product brief
 
-**Status:** Step 5 implemented locally — awaiting review; Step 6 pending
-**Last updated:** 2026-09-10
+**Status:** Step 5 merged; Step 6 verified locally — awaiting review
+**Last updated:** 2026-09-11
 
 ## 1. Product vision
 
@@ -246,7 +246,7 @@ paths so a clean Vercel deployment works without configuration code.
   line: selectors and objective toggle update from `derived.json` only.
 - [x] **Step 5 — Add the single comparison chart and plain-language
   limitations.** Finish line: one readable chart and every caveat is visible.
-- [ ] **Step 6 — Verify privacy, calculations and static deployment.** Finish
+- [x] **Step 6 — Verify privacy, calculations and static deployment.** Finish
   line: no raw CSV/browser references; formulas and outputs pass checks; a
   clean Vercel static deployment needs no environment variables, API, or
   framework configuration.
@@ -255,5 +255,5 @@ paths so a clean Vercel deployment works without configuration code.
 
 ## 7. Deliberate deviations
 
-None at this step.
+Step 6 records the existing recommendation and target-score differences in README.md. Deployment now has an explicit public-only output configuration. Live hosting remains unverified; the supplied raw CSVs remain public in GitHub. No scenario or recommendation logic changed in Step 6.
 
