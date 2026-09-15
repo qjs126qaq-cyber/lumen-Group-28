@@ -93,3 +93,13 @@ The three-page design uses the existing aggregate scenarios plus locally compute
 ## City dashboard refinement — 11 September 2026
 
 Browser checks passed all 90 advisor combinations (five cities × three channels × three tested prices × two objectives), with exactly one advisor chart. All five market city selections and 15 city/channel competitor views passed. Comparable Markets shows exactly NL, DK, SE and Germany for each channel, with no city selector or city URL links. No browser console errors or warnings were reported. City figures are proportional scenario allocations, not observations; competitor prices remain channel-level case references, with missing single-can observations explicitly marked.
+
+## Value mix — 15 September 2026
+
+`node tests/value-mix.mjs` passes 505 city/weight rankings and independent scores for all candidates, endpoint identity, tie/constant-metric cases, missing/empty scenarios and tested-only pricing. Browser checks pass both endpoints and Apply recommendation in all five cities, keyboard 1% steps, partial-data exclusion and recovery, and disabled Apply for empty data. No console errors. Desktop 1280px: controls and results share a top edge; mobile 390px: results follow controls with no horizontal overflow. Existing aggregates unchanged; privacy checks pass.
+
+Channel-share extension: unit tests cover all 15 city/tested-price splits, exact 100% displayed totals, proportional rounding, stable equal-share ties, missing-channel rejection and zero-total rejection. Existing 505 Value mix checks still pass.
+
+## Compact workspace release — 15 September 2026
+
+Calculation suite verifies top-three ordering for all 505 city/weight rankings. Browser: 15 city/objective apply flows, both endpoints in all five cities, native radio arrow navigation, exact match/disabled action and restoration after scenario edits, separate zero deltas after apply, equal chart bar widths, labeled zero scale, and full-width channel controls. Tied fixture shows three tied labels; partial and empty fixtures show unavailable states without crashes. Desktop1280 and mobile390/320 have no horizontal overflow; mobile results follow controls. No console errors. Data and recommendation formulas unchanged.
