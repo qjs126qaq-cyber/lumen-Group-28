@@ -1,14 +1,9 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Launch Advisor — LUMEN Germany</title>
-<link rel="icon" href="data:,">
-<link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Launch Advisor — LUMEN Germany</title><link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/styles.css?v=compact-2"></head>
+<body class="advisor-page">
 <nav class="nav">
   <div class="nav-inner">
     <span class="brand">LUMEN<span class="dot">.</span> Germany Launch</span>
@@ -19,80 +14,85 @@
 </nav>
 
 <main>
-  <h1>Launch Advisor</h1>
-  <p class="subtitle">In which city, at what price, and through which channel should LUMEN launch?
-  All German figures are year-1 estimates — LUMEN has never sold in Germany.</p>
-
-  <div class="banner" id="banner" aria-live="polite">
-    <p class="headline" id="banner-headline">Loading…</p>
-    <p class="subline" id="banner-subline"></p>
+  <header class="page-heading">
+    <div><p class="eyebrow">GERMANY · LAUNCH PLANNING</p><h1>Launch Advisor</h1></div>
+    <div class="global-city"><label for="city-select">Launch city</label><select id="city-select" aria-describedby="estimate-note"></select></div>
+  </header>
+  <p id="estimate-note" class="estimate-note">All German figures are illustrative year-1 estimates. No German sales exist. City allocations assume the same price response in each city.</p>
+  <section class="objective-panel" aria-labelledby="objective-label">
+    <div><h2 id="objective-label">What matters most?</h2>
+      <div id="objective-seg" class="choices" role="radiogroup" aria-labelledby="objective-label">
+        <label class="choice"><input type="radio" name="objective" value="profit"><span>Profitability</span></label>
+        <label class="choice"><input type="radio" name="objective" value="share" checked><span>Market share</span></label>
+        <label class="choice"><input type="radio" name="objective" value="mix"><span>Balance profit &amp; reach</span></label>
+      </div>
+    </div>
+    <div id="mix-control" hidden><label for="mix-slider">Profitability weight</label>
+      <output id="mix-percentages" for="mix-slider">50% profitability / 50% market share</output>
+      <input id="mix-slider" type="range" min="0" max="100" step="1" value="50" aria-describedby="objective-help">
+      <div class="mix-endpoints"><span>100% reach</span><span>100% profit</span></div>
+    </div>
+    <p id="objective-help" class="bench-note">Profitability = estimated contribution, excluding fixed and launch costs. Market share = estimated units as a reach proxy. Balanced scores express preferences, not forecasts.</p>
+  </section>
+  <div class="decision-workspace">
+    <section class="banner" id="banner" aria-labelledby="recommendation-heading">
+      <h2 id="recommendation-heading">Recommended launch</h2>
+      <div aria-live="polite"><p class="headline" id="banner-headline">Loading…</p>
+        <p id="recommendation-metrics"></p><p class="subline" id="banner-subline"></p>
+        <p id="recommendation-tradeoff"></p></div>
+      <button id="apply-recommendation" type="button">Apply recommendation</button>
+    </section>
+    <section class="scenario-tool" aria-labelledby="scenario-heading">
+      <div class="scenario-title"><h2 id="scenario-heading">Your scenario</h2><p id="scenario-match" aria-live="polite"></p></div>
+      <div class="scenario-layout">
+        <div class="controls" role="group" aria-label="Scenario controls">
+          <div><h3 id="channel-label">Channel</h3><div class="choices" id="channel-seg" role="radiogroup" aria-labelledby="channel-label"></div></div>
+          <div class="slider-wrap"><label class="title" for="price-slider">Shelf price <strong id="price-readout"></strong></label>
+            <p id="price-mode" class="price-mode"></p>
+            <input type="range" id="price-slider" min="179" max="259" step="1" value="219" aria-describedby="price-mode">
+            <div class="tested-prices" id="tested-prices" role="radiogroup" aria-label="Tested prices"></div>
+          </div>
+          <p id="floor-note" class="bench-note"></p>
+        </div>
+        <div class="scenario-output">
+          <div class="results" id="results" aria-live="polite"></div>
+          <div id="scenario-difference" class="scenario-difference" aria-live="polite"></div>
+          <section class="chart" aria-labelledby="chart-title"><h3 id="chart-title">Price comparison</h3>
+            <p id="chart-metric" class="bench-note"></p>
+            <figure id="price-figure" aria-labelledby="chart-title chart-metric" aria-describedby="chart-caption">
+              <div class="price-plot"><div id="chart-axis" class="chart-axis" aria-hidden="true"></div><div id="chart-bars" class="price-bars"></div></div>
+              <figcaption id="chart-caption">Gold = selected price. Outline + badge = recommended launch. Bars start at zero; exact values appear above each bar.</figcaption>
+            </figure>
+          </section>
+        </div>
+      </div>
+      <p class="target-line" id="target-line"></p>
+    </section>
   </div>
-
-  <section class="controls">
-    <div class="control">
-      <label class="title" for="city-select">Launch city</label>
-      <select id="city-select" aria-describedby="city-help"></select>
-      <p id="city-help" class="bench-note">Illustrative allocation of the national scenario; the same price response is assumed across cities.</p>
-    </div>
-    <div class="control">
-      <label class="title" id="channel-label">Channel</label>
-      <div class="seg" id="channel-seg" role="group" aria-labelledby="channel-label"></div>
-    </div>
-
-    <div class="control slider-wrap">
-      <label class="title" for="price-slider">Shelf price
-        <span class="price-readout" id="price-readout"></span>
-        <span class="price-mode" id="price-mode"></span>
-      </label>
-      <div class="slider-row">
-        <input type="range" id="price-slider" min="179" max="259" step="1" value="219"
-               aria-describedby="price-mode">
-      </div>
-      <div class="slider-ticks" id="price-ticks" aria-hidden="true"></div>
-      <div class="tested-prices" id="tested-prices" role="group" aria-label="Tested prices"></div>
-    </div>
-
-    <div class="control">
-      <label class="title" id="objective-label">Objective</label>
-      <div class="seg" id="objective-seg" role="group" aria-labelledby="objective-label">
-        <button data-objective="profit" aria-pressed="false">Profitability</button>
-        <button data-objective="share" aria-pressed="true">Market share</button>
-      </div>
-    </div>
+  <section class="ranking-panel" aria-labelledby="ranking-title"><h2 id="ranking-title">Top three tested launches</h2>
+    <p id="ranking-note" class="bench-note"></p>
+    <div class="table-wrap"><table id="ranking-table"></table></div>
   </section>
-
-  <section>
-    <div class="results" id="results" aria-live="polite"></div>
-    <p class="floor-note" id="floor-note"></p>
-    <p class="target-line" id="target-line"></p>
-    <p class="floor-note" id="positioning-line"></p>
+  <section class="sales-mix-panel" aria-labelledby="sales-mix-title">
+    <h2 id="sales-mix-title">Estimated channel shares</h2>
+    <div aria-live="polite"><p id="sales-mix-context" class="bench-note"></p><div id="sales-mix-bar" class="share-bar" aria-hidden="true"></div><dl id="sales-mix-values" class="sales-mix-values"></dl></div>
+    <p class="bench-note">Illustrative shares assume no channel cannibalization (channels do not take sales from one another). This is not an optimized allocation or a validated combined-sales forecast.</p>
+    <details><summary>How channel shares are calculated</summary><p>Each channel’s estimated units are divided by the sum across DTC, Retail and Gym &amp; Office, at the recommended common tested price. Rounding makes shares total 100%. Balance profit &amp; reach ranks launch options; its weights do not directly allocate sales. Shares change with the selected city or recommended price. Incomplete data or a zero total makes shares unavailable.</p></details>
   </section>
-
-  <div class="evidence-grid">
-  <section class="chart" id="chart">
-    <h2 id="chart-title">Tested prices compared</h2>
-    <div class="bars" id="chart-bars" role="figure" aria-labelledby="chart-title"></div>
-  <p class="bench-note">Bars share a zero baseline. Leader is the best tested price in this channel; the banner ranks all channels. Market share uses units as a proxy. Interpolated prices are never recommended.</p>
-  </section>
-
-  <section class="assumptions">
-    <h2>Assumptions &amp; limitations</h2>
+  <details class="assumptions">
+    <summary>Methodology, assumptions &amp; limitations</summary>
+    <p>Balance profit &amp; reach scores each valid tested channel/price combination for the selected city. Each metric is normalized as (value − minimum) / (maximum − minimum) across that same candidate set. Score = profitability weight × normalized contribution + market-share weight × normalized units.</p>
+    <p>Missing or incomplete scenarios are excluded. If a metric is equal for every candidate, its normalized value is zero for everyone. Exact ties use the case's existing channel order, then tested-price order. At 0% or 100%, Balance profit &amp; reach reproduces the corresponding single-objective recommendation. Scores compare preferences, not future outcomes.</p>
     <ul>
       <li><strong>No German sales exist.</strong> Units are estimated from 78 weeks of
         NL/DK/SE sales, deduplicated and annualised, multiplied by the 52% relevant-category share and a 50% entry-scale assumption, then adjusted with German survey acceptance and channel intent. The city view allocates that scenario by city share, assumes the same response in every city, and rounds city units to hundreds. See the methodology in the README.</li>
       <li><strong>Only three prices were tested</strong> (€1.79, €2.19, €2.59). Slider
         positions between them are linear interpolations — exploratory only, and never
         used for the recommendation.</li>
-      <li><strong>Contribution</strong> uses channel economics (what LUMEN nets after
+      <li><strong>Estimated contribution</strong> uses channel economics (what LUMEN nets after
         retailer, distributor, payment and fulfilment costs), not shelf revenue. It excludes fixed and launch costs and is not net profit. Units are rounded to hundreds; money is calculated from those rounded units.</li>
       <li><strong>Seasonality</strong> comes from the monthly demand index; the launch
         window is mid-April to early May, ahead of the June–August peak; annual totals are not increased. Survey intent may not become purchases.</li>
     </ul>
-  </section>
-  </div>
-  <section class="competitor-panel" aria-labelledby="competitor-title"><h2 id="competitor-title">Competitor prices by channel</h2><div class="table-wrap"><table id="competitor-table"></table></div><p id="competitor-note" class="bench-note"></p></section>
-</main>
-
-<script type="module" src="js/advisor.js"></script>
-</body>
-</html>
+  </details>
+</main><script type="module" src="js/advisor.js?v=compact-2"></script></body></html>
