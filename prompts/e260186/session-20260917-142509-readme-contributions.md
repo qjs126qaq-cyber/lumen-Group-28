@@ -47,3 +47,9 @@ The project was developed mainly on **Léon’s computer**, but it was a collabo
 e260186
 
 Result: Added the team contribution statement to README.md on a dedicated branch and prepared a pull request for review.
+
+## Entry 12 — 2026-09-17 14:29:07 +02:00
+
+怎么merge啊
+
+Result: Explained how to merge pull request #11 on GitHub.
