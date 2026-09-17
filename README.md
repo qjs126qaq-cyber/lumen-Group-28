@@ -46,4 +46,4 @@ These questions aren't here to slow you down — they're part of what's being ev
 
 ## Our Approach
 
-*[To be filled in by the team at the end.]*
+The project was developed mainly on Léon’s computer, but it was a collaborative effort by the five active members working together. The initial structure was largely AI-generated, and we collectively refined it through our inputs and iterations. Léon consolidated the team’s ideas into prompts and iterated with the AI. Raphaël Sauteur added privacy-safe data preparation artifacts and checked how the data was used. Jiashuo provided insights on comparable markets and how NL/DK/SE could inform the German case. Yuchen contributed ideas on German city selection and differences in market potential. Riccardo focused on pricing and channel insights and how these should influence the recommendations. Raphael YKHLEF did not attend the working sessions or contribute to the project.  
